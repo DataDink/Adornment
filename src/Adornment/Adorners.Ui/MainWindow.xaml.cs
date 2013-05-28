@@ -24,5 +24,13 @@ namespace Adorners.Ui
         {
             InitializeComponent();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            var border = button.Parent as Border;
+            Adornment.SetVisibility(border, Adornment.GetVisibility(border) == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible);
+
+        }
     }
 }

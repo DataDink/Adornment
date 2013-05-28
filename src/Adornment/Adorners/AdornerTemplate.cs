@@ -21,13 +21,13 @@ namespace Adorners
         /// <summary>
         /// The adorner type to be created
         /// </summary>
-        public Type AdornerType { get; set; }
+        public Type Type { get; set; }
 
         public virtual Adorner LoadContent(UIElement adornedElement)
         {
             var parameters = ConstructorParameters.ToList();
             parameters.Insert(0, adornedElement);
-            return Activator.CreateInstance(AdornerType, parameters.ToArray()) as Adorner;
+            return Activator.CreateInstance(Type, parameters.ToArray()) as Adorner;
         }
     }
 }

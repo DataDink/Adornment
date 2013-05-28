@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Shapes;
@@ -17,6 +18,7 @@ namespace Adorners
         public static readonly DependencyProperty TopProperty = DependencyProperty.RegisterAttached("Top", typeof(double), typeof(Adornment), new PropertyMetadata(double.NaN, OnPositionChanged));
         public static readonly DependencyProperty RightProperty = DependencyProperty.RegisterAttached("Right", typeof(double), typeof(Adornment), new PropertyMetadata(double.NaN, OnPositionChanged));
         public static readonly DependencyProperty BottomProperty = DependencyProperty.RegisterAttached("Bottom", typeof(double), typeof(Adornment), new PropertyMetadata(double.NaN, OnPositionChanged));
+        public static readonly DependencyProperty VisibilityProperty = DependencyProperty.RegisterAttached("Visibility", typeof (Visibility), typeof (Adornment), new PropertyMetadata(Visibility.Visible, OnVisibilityChanged));
         public static readonly DependencyProperty OwnerProperty = DependencyProperty.RegisterAttached("Owner", typeof(DependencyObject), typeof(Adornment), new PropertyMetadata(null));
 
         /// <summary>
@@ -97,6 +99,33 @@ namespace Adorners
 
 
             element.Arrange(new Rect(x, y, width, height));
+        }
+
+        /// <summary>
+        /// Sets the visiblity of this element's adorner layer
+        /// </summary>
+        public static void SetVisibility(DependencyObject element, Visibility value)
+        {
+            element.SetValue(VisibilityProperty, value);
+        }
+
+        /// <summary>
+        /// Gets the visiblity of this element's adorner layer
+        /// </summary>
+        public static Visibility GetVisibility(DependencyObject element)
+        {
+            return (Visibility)element.GetValue(VisibilityProperty);
+        }
+
+        private static void OnVisibilityChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            var visual = sender as Visual;
+            if (visual == null) return;
+
+            var layer = AdornerLayer.GetAdornerLayer(visual);
+            if (layer == null) return;
+
+            layer.Visibility = GetVisibility(sender);
         }
 
         /// <summary>

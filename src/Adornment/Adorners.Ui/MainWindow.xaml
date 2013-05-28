@@ -2,32 +2,18 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:A="clr-namespace:Adorners;assembly=Adorners"
         xmlns:L="clr-namespace:Adorners.Ui"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="282" Width="264">
     <Grid>
         <Border Background="Black">
+            <Button Click="Button_Click_1" />
             <A:Adornment.Content>
                 <A:AdornmentCollection>
-                    <Border Opacity=".5"
-                            Margin="0"
-                            Width="100"
-                            Height="100"
-                        A:Adornment.Top="200"
-                        A:Adornment.Left="300"
-                        A:Adornment.Right="50"
-                        A:Adornment.Bottom="50"
-                        Background="Blue"/>
-                    <Border Opacity=".5"
-                        A:Adornment.Right="200"
-                        A:Adornment.Top="50"
-                        A:Adornment.Left="50"
-                        A:Adornment.Bottom="50"
-                        Background="Red"/>
-                    <Border Opacity=".5"
-                        A:Adornment.Right="50"
-                        A:Adornment.Top="50"
-                        A:Adornment.Left="50"
-                        A:Adornment.Bottom="100"
-                        Background="Green"/>
+                    <A:AdornerTemplate Type="L:GridAdornment"/>
+                    <Ellipse Fill="Blue"
+                             A:Adornment.Left="50"
+                             A:Adornment.Right="50"
+                             A:Adornment.Bottom="50"
+                             A:Adornment.Top="50"/>
                 </A:AdornmentCollection>
             </A:Adornment.Content>
         </Border>

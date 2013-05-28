@@ -15,6 +15,7 @@ namespace Adorners
     [ContentProperty("Items")]
     public class AdornmentCollection : DependencyCollection<DependencyObject>
     {
+        // TODO - research a better way to handle this
         public List<DependencyObject> Items
         {
             get { return Internal; }
