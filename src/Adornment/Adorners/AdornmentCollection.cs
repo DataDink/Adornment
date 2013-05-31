@@ -16,10 +16,9 @@ namespace Adorners
     public class AdornmentCollection : DependencyCollection<DependencyObject>
     {
         // TODO - research a better way to handle this
-        public List<DependencyObject> Items
+        public DependencyCollection<DependencyObject> Items
         {
-            get { return Internal; }
-            set { Clear(); AddRange(value); }
+            get { return this; }
         } 
     }
 }
